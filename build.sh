@@ -20,7 +20,7 @@
 # the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 # Boston, MA 02111-1307, USA.
 #
-# $Id: build.sh,v 1.1 2005-12-16 16:29:52 hanke Exp $
+# $Id: build.sh,v 1.1.1.1 2005-12-16 16:29:52 hanke Exp $
 
 
 echo "Copying libtool macros (libtoolize)"

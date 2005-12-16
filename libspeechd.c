@@ -19,7 +19,7 @@
  * Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
  * 02111-1307, USA.
  *
- * $Id: libspeechd.c,v 1.1 2005-12-16 16:29:48 hanke Exp $
+ * $Id: libspeechd.c,v 1.1.1.1 2005-12-16 16:29:48 hanke Exp $
  */
 
 #include <sys/types.h>

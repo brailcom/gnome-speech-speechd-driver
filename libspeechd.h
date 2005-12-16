@@ -19,7 +19,7 @@
  * the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * $Id: libspeechd.h,v 1.1 2005-12-16 16:29:50 hanke Exp $
+ * $Id: libspeechd.h,v 1.1.1.1 2005-12-16 16:29:50 hanke Exp $
  */
 
 
