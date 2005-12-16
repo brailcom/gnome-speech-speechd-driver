@@ -1,0 +1,41 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(configure.in)
+
+AC_LANG(C)
+
+dnl progs
+AC_PROG_CC
+
+dnl info
+AM_INIT_AUTOMAKE("gnome-speech-speech-dispatcher", "`cat version.sh|grep '^VERSION'|awk -F= '{print $2}'`")
+
+AM_CONFIG_HEADER(config.h)
+
+echo ""
+echo "Checking dependencies..."
+echo ""
+
+PKG_CHECK_MODULES(gnome_speech_libs, bonobo-activation-2.0 >= 0.9.1 libbonobo-2.0 >= 1.97.0 ORBit-2.0 >= 2.3.94 gnome-speech-1.0 >= 0.8 glib-2.0)
+
+AC_SUBST(gnome_speech_LIBS)
+AC_SUBST(gnome_speech_CFLAGS)
+
+
+dnl Checks for header files.
+AC_HEADER_STDC
+AC_CHECK_HEADERS(limits.h sys/ioctl.h sys/time.h unistd.h)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_HEADER_TIME
+
+dnl Checks for library functions.
+AC_PROG_GCC_TRADITIONAL
+
+AC_PROG_INSTALL
+AC_PROG_MAKE_SET
+
+AC_PROG_LIBTOOL
+
+AC_OUTPUT([Makefile GNOME_Speech_SynthesisDriver_Speech_Dispatcher.server])
+

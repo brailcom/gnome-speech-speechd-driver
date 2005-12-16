@@ -1,0 +1,33 @@
+This is the Speech Dispatcher driver for Gnome Speech
+(gnome-speech-speechd-driver). It is a part of the Free(b)soft project
+(http://www.freebsoft.org/), which is intended to allow blind and visually
+impaired people to work with computer and Internet based on free software.
+
+To build and install this driver into Gnome Speech, read the file INSTALL.
+
+For information about how to install and use Speech Dispatcher, see
+	http:/www.freebsoft.org/speechd
+
+For information about how to install and use Gnome Speech, see
+	http://developer.gnome.org/projects/gap/	
+
+Complete documentation may be found in doc directory. Read doc/README for more
+information.
+
+*******************************************************************************
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU Library General Public License as published by the Free
+Software Foundation; either version 2 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the GNU Library General Public License for more
+details (file COPYING in the root directory).
+
+You should have received a copy of the GNU Library General Public License along
+with this program; if not, write to the Free Software Foundation, Inc., 675
+Mass Ave, Cambridge, MA 02139, USA.
+
+*******************************************************************************

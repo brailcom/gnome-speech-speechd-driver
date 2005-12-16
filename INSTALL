@@ -1,0 +1,102 @@
+The Requirements:
+=================
+
+You will need these components to compile Speech Dispatcher:  
+ - glib 2.0  (http://www.gtk.org)
+ - bonobo-activation-2.0 >= 0.9.1 (http://www.gnome.org/)
+ - libbonobo-2.0 >= 1.97.0 (http://www.gnome.org/)
+ - ORBit-2.0 >= 2.3.94 (http://www.gnome.org)
+ - gnome-speech-1.0 >= 0.8 (http://developer.gnome.org/projects/gap/)
+
+Only if you are building from CVS, you also need these:
+ - automake 1.7+, autoconf, pkg-config and libtool
+
+We recommend to also install these packages:
+ - Gnopernicus (http://www.baum.ro/gnopernicus.html)
+ - Festival (http://www.cstr.ed.ac.uk/projects/festival/)
+
+Building Speech Dispatcher Driver:
+==================================
+
+(for instructions about how to build from CVS or CVS snapshot see bellow)
+
+First unzip the distribution tarball where this file is located
+
+ $ tar -xzvf gnome-speech-speechd-driver-@VERSION.tar.gz
+ $ cd gnome-speech-speechd-driver-@VERSION
+
+Configure the driver and it's installation parameters by running
+
+ $ ./configure --prefix=/usr/
+
+Warning: Without specifying the above prefix option, the default instalation of
+Gnopernicus will not find the module. Change it only if you know what you are
+doing.
+
+On some systems, before running make, you have to set the environment variable
+SED to your binary of the sed application. This is usually done as:
+ $ export SED=sed
+
+Then you can proceed
+
+ $ make all
+
+If everything worked ok, you can install all the parts to the default
+path by running (as root):
+
+ $ make install
+
+Now after you restart Gnome Speech (this likely means logging out and in of
+your X session), it should be possible to use Gnome Speech and Gnopernicus with
+Speech Dispatcher. In Gnopernicus, the appropriate settings are located under
+the menus Settings/Speech/Voices/.
+
+If you like to set specific Speech Dispatcher defaults for connections comming
+from Gnome Speech, you can create a client specific configuration section in
+speechd.conf, as described in Speech Dispatcher's documentation. The
+identification for Gnome Speech connections is gnome-speech:main:USERNAME where
+USERNAME stands for the name of the logged in user running Gnopernicus. Usually,your mask will thus be just "*gnome-speech*".
+
+If it doesn't work, please see "Building from CVS" if this is your case. If
+not, you can ask us on users@lists.freebsoft.org or report possible bugs on
+speechd@bugs.freebsoft.org .
+
+Building from CVS
+=================
+
+If you are building directly from CVS or from some CVS tarball snapshot, you
+must first create the ./configure file. Please make sure you have all the
+necessary tools listed in the requirements at the beginning of this README
+in their appropriate versions. Automake and autoconf are especially version
+sensitive.
+
+Then please do:
+
+ $ ./build.sh
+
+in the source directory just before running ./configure.
+
+Now the ./configure file should be created and you can proceed like with
+an ordinary instalation.
+
+
+Building in more detail:
+========================
+
+The hierarchy of Makefiles is used to build each of the parts. The top
+level Makefile allows you to compile some extra parts of the project.
+These are:
+
+    - doc ........ build documentation in all supported formats
+                   (see doc/README for more information)
+    - src/server ..... build speachd server - this is the same as
+                   cd src/server; make all
+    - src/modules .... build all speachd modules - this is the same as
+                   cd src/modules; make all
+    - src/clients .... build all clients - this is the same as
+                   cd src/clients; make all
+    - clean ...... remove all files except the sources (does not
+                   clean documentation)
+    - all ........ build server, modules and clients
+
+    

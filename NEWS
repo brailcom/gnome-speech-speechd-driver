@@ -1,0 +1,5 @@
+
+Version 0.1
+	* Gnome Speech Speech Dispatcher Synthesis Driver provides
+	basic functionality so that Gnome Speech (and Gnopernicus)
+	could synthesize it's speech output through Speech Dispatcher.
