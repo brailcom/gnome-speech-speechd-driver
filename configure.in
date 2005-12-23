@@ -7,7 +7,7 @@ dnl progs
 AC_PROG_CC
 
 dnl info
-AM_INIT_AUTOMAKE("gnome-speech-speech-dispatcher", "`cat version.sh|grep '^VERSION'|awk -F= '{print $2}'`")
+AM_INIT_AUTOMAKE("gnome-speech-speechd-driver", "`cat version.sh|grep '^VERSION'|awk -F= '{print $2}'`")
 
 AM_CONFIG_HEADER(config.h)
 
@@ -15,7 +15,7 @@ echo ""
 echo "Checking dependencies..."
 echo ""
 
-PKG_CHECK_MODULES(gnome_speech_libs, bonobo-activation-2.0 >= 0.9.1 libbonobo-2.0 >= 1.97.0 ORBit-2.0 >= 2.3.94 gnome-speech-1.0 >= 0.8 glib-2.0)
+PKG_CHECK_MODULES(gnome_speech_libs, bonobo-activation-2.0 >= 0.9.1 libbonobo-2.0 >= 1.97.0 ORBit-2.0 >= 2.3.94 gnome-speech-1.0 >= 0.3 glib-2.0)
 
 AC_SUBST(gnome_speech_LIBS)
 AC_SUBST(gnome_speech_CFLAGS)
