@@ -13,7 +13,7 @@
 @end direntry
 
 @titlepage
-@title SpeechD-Up
+@title Gnome Speech SpeechD Driver
 @author Hynek Hanke <@email{hanke@@brailcom.org}>
 
 @page
@@ -50,7 +50,7 @@ in the distribution.
 @end ifnottex
 
 @ifhtml
-@heading SpeechD-Up
+@heading Gnome Speech SpeechD Driver
 @end ifhtml
 
 @code{gnome-speech-speechd-driver} is a very simple driver for Gnome
