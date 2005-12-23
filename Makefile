@@ -18,9 +18,9 @@
 srcdir = .
 top_srcdir = .
 
-pkgdatadir = $(datadir)/gnome-speechd
-pkglibdir = $(libdir)/gnome-speechd
-pkgincludedir = $(includedir)/gnome-speechd
+pkgdatadir = $(datadir)/gnome-speech-speechd-driver
+pkglibdir = $(libdir)/gnome-speech-speechd-driver
+pkgincludedir = $(includedir)/gnome-speech-speechd-driver
 top_builddir = .
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 INSTALL = /usr/bin/install -c
@@ -43,7 +43,7 @@ DIST_COMMON = README $(am__configure_deps) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/config.h.in $(top_srcdir)/configure AUTHORS COPYING \
 	ChangeLog INSTALL NEWS config.guess config.sub depcomp \
-	install-sh ltmain.sh missing
+	install-sh ltmain.sh missing texinfo.tex
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.in
@@ -55,7 +55,8 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =  \
 	GNOME_Speech_SynthesisDriver_Speech_Dispatcher.server
-am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(serverinfodir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(infodir)" \
+	"$(DESTDIR)$(serverinfodir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_speechd_synthesis_driver_OBJECTS = libspeechd.$(OBJEXT) \
@@ -78,6 +79,18 @@ LINK = $(LIBTOOL) --tag=CC --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(speechd_synthesis_driver_SOURCES)
 DIST_SOURCES = $(speechd_synthesis_driver_SOURCES)
+INFO_DEPS = $(srcdir)/gnome-speech-speechd-driver.info
+am__TEXINFO_TEX_DIR = $(srcdir)
+DVIS = gnome-speech-speechd-driver.dvi
+PDFS = gnome-speech-speechd-driver.pdf
+PSS = gnome-speech-speechd-driver.ps
+HTMLS = gnome-speech-speechd-driver.html
+TEXINFOS = gnome-speech-speechd-driver.texi
+TEXI2DVI = texi2dvi
+TEXI2PDF = $(TEXI2DVI) --pdf --batch
+MAKEINFOHTML = $(MAKEINFO) --html
+AM_MAKEINFOHTMLFLAGS = $(AM_MAKEINFOFLAGS)
+DVIPS = dvips
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
@@ -99,14 +112,14 @@ DIST_ARCHIVES = $(distdir).tar.gz
 GZIP_ENV = --best
 distuninstallcheck_listfiles = find . -type f -print
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /home/hanke/cvs/gnome/gnome-dispatcher-driver/missing --run aclocal-1.9
+ACLOCAL = ${SHELL} /home/hanke/cvs/gnome/gnome-speech-speechd-driver/missing --run aclocal-1.9
 AMDEP_FALSE = #
 AMDEP_TRUE = 
-AMTAR = ${SHELL} /home/hanke/cvs/gnome/gnome-dispatcher-driver/missing --run tar
+AMTAR = ${SHELL} /home/hanke/cvs/gnome/gnome-speech-speechd-driver/missing --run tar
 AR = ar
-AUTOCONF = ${SHELL} /home/hanke/cvs/gnome/gnome-dispatcher-driver/missing --run autoconf
-AUTOHEADER = ${SHELL} /home/hanke/cvs/gnome/gnome-dispatcher-driver/missing --run autoheader
-AUTOMAKE = ${SHELL} /home/hanke/cvs/gnome/gnome-dispatcher-driver/missing --run automake-1.9
+AUTOCONF = ${SHELL} /home/hanke/cvs/gnome/gnome-speech-speechd-driver/missing --run autoconf
+AUTOHEADER = ${SHELL} /home/hanke/cvs/gnome/gnome-speech-speechd-driver/missing --run autoheader
+AUTOMAKE = ${SHELL} /home/hanke/cvs/gnome/gnome-speech-speechd-driver/missing --run automake-1.9
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -138,9 +151,9 @@ LIBS =
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
 LN_S = ln -s
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/hanke/cvs/gnome/gnome-dispatcher-driver/missing --run makeinfo
+MAKEINFO = ${SHELL} /home/hanke/cvs/gnome/gnome-speech-speechd-driver/missing --run makeinfo
 OBJEXT = o
-PACKAGE = gnome-speechd
+PACKAGE = gnome-speech-speechd-driver
 PACKAGE_BUGREPORT = 
 PACKAGE_NAME = 
 PACKAGE_STRING = 
@@ -177,8 +190,10 @@ build_os = linux-gnu
 build_vendor = pc
 datadir = ${prefix}/share
 exec_prefix = ${prefix}
-gnome_speechd_CFLAGS = -DORBIT2=1 -pthread -I/usr/local/include/gnome-speech-1.0 -I/usr/include/bonobo-activation-2.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/orbit-2.0 -I/usr/include/libbonobo-2.0  
-gnome_speechd_LIBS = -Wl,--export-dynamic -pthread -L/usr/local/lib -lgnomespeech -lbonobo-2 -lbonobo-activation -lORBit-2 -lm -lgmodule-2.0 -ldl -lgthread-2.0 -lglib-2.0  
+gnome_speech_CFLAGS = 
+gnome_speech_LIBS = 
+gnome_speech_libs_CFLAGS = -DORBIT2=1 -pthread -I/usr/local/include/gnome-speech-1.0 -I/usr/include/bonobo-activation-2.0 -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include -I/usr/include/orbit-2.0 -I/usr/include/libbonobo-2.0  
+gnome_speech_libs_LIBS = -Wl,--export-dynamic -pthread -L/usr/local/lib -lgnomespeech -lbonobo-2 -lbonobo-activation -lORBit-2 -lm -lgmodule-2.0 -ldl -lgthread-2.0 -lglib-2.0  
 host = i686-pc-linux-gnu
 host_alias = 
 host_cpu = i686
@@ -186,7 +201,7 @@ host_os = linux-gnu
 host_vendor = pc
 includedir = ${prefix}/include
 infodir = ${prefix}/info
-install_sh = /home/hanke/cvs/gnome/gnome-dispatcher-driver/install-sh
+install_sh = /home/hanke/cvs/gnome/gnome-speech-speechd-driver/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localstatedir = ${prefix}/var
@@ -199,13 +214,17 @@ sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 sysconfdir = ${prefix}/etc
 target_alias = 
+info_TEXINFOS = gnome-speech-speechd-driver.texi
+SUFFIXES = .html
+html_docs = gnome-speech-speechd-driver.html
+HTMLDIR = htmldoc
 serverinfodir = $(libdir)/bonobo/servers
 serverinfo_DATA = GNOME_Speech_SynthesisDriver_Speech_Dispatcher.server
 INCLUDES = -I$(top_srcdir) \
-	$(gnome_speechd_CFLAGS) \
+	$(gnome_speech_libs_CFLAGS) \
 	$(WARN_CFLAGS)
 
-LDADD = $(gnome_speechd_LIBS)
+LDADD = $(gnome_speech_libs_LIBS)
 speechd_synthesis_driver_SOURCES = \
 	libspeechd.c \
 	libspeechd.h \
@@ -214,13 +233,13 @@ speechd_synthesis_driver_SOURCES = \
 	speechdspeaker.c \
 	speechdspeaker.h
 
-EXTRA_DIST = GNOME_Speech_SynthesisDriver_Speech_Dispatcher.server.in $(serverinfo_DATA)
+EXTRA_DIST = GNOME_Speech_SynthesisDriver_Speech_Dispatcher.server.in $(serverinfo_DATA) version.sh build.sh BUGS
 CLEANFILES = $(serverinfo_DATA)
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .lo .o .obj
+.SUFFIXES: .html .c .dvi .info .lo .o .obj .pdf .ps .texi
 am--refresh:
 	@:
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
@@ -344,7 +363,110 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool
+
+.texi.info:
+	restore=: && backupdir="$(am__leading_dot)am$$$$" && \
+	am__cwd=`pwd` && cd $(srcdir) && \
+	rm -rf $$backupdir && mkdir $$backupdir && \
+	if ($(MAKEINFO) --version) >/dev/null 2>&1; then \
+	  for f in $@ $@-[0-9] $@-[0-9][0-9] $(@:.info=).i[0-9] $(@:.info=).i[0-9][0-9]; do \
+	    if test -f $$f; then mv $$f $$backupdir; restore=mv; else :; fi; \
+	  done; \
+	else :; fi && \
+	cd "$$am__cwd"; \
+	if $(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir) \
+	 -o $@ $<; \
+	then \
+	  rc=0; \
+	  cd $(srcdir); \
+	else \
+	  rc=$$?; \
+	  cd $(srcdir) && \
+	  $$restore $$backupdir/* `echo "./$@" | sed 's|[^/]*$$||'`; \
+	fi; \
+	rm -rf $$backupdir; exit $$rc
+
+.texi.dvi:
+	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
+	MAKEINFO='$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir)' \
+	$(TEXI2DVI) $<
+
+.texi.pdf:
+	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
+	MAKEINFO='$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I $(srcdir)' \
+	$(TEXI2PDF) $<
+$(srcdir)/gnome-speech-speechd-driver.info: gnome-speech-speechd-driver.texi 
+gnome-speech-speechd-driver.dvi: gnome-speech-speechd-driver.texi 
+gnome-speech-speechd-driver.pdf: gnome-speech-speechd-driver.texi 
+gnome-speech-speechd-driver.html: gnome-speech-speechd-driver.texi 
+.dvi.ps:
+	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
+	$(DVIPS) -o $@ $<
+
 uninstall-info-am:
+	@$(PRE_UNINSTALL)
+	@if (install-info --version && \
+	     install-info --version 2>&1 | sed 1q | grep -i -v debian) >/dev/null 2>&1; then \
+	  list='$(INFO_DEPS)'; \
+	  for file in $$list; do \
+	    relfile=`echo "$$file" | sed 's|^.*/||'`; \
+	    echo " install-info --info-dir='$(DESTDIR)$(infodir)' --remove '$(DESTDIR)$(infodir)/$$relfile'"; \
+	    install-info --info-dir="$(DESTDIR)$(infodir)" --remove "$(DESTDIR)$(infodir)/$$relfile"; \
+	  done; \
+	else :; fi
+	@$(NORMAL_UNINSTALL)
+	@list='$(INFO_DEPS)'; \
+	for file in $$list; do \
+	  relfile=`echo "$$file" | sed 's|^.*/||'`; \
+	  relfile_i=`echo "$$relfile" | sed 's|\.info$$||;s|$$|.i|'`; \
+	  (if cd "$(DESTDIR)$(infodir)"; then \
+	     echo " cd '$(DESTDIR)$(infodir)' && rm -f $$relfile $$relfile-[0-9] $$relfile-[0-9][0-9] $$relfile_i[0-9] $$relfile_i[0-9][0-9]"; \
+	     rm -f $$relfile $$relfile-[0-9] $$relfile-[0-9][0-9] $$relfile_i[0-9] $$relfile_i[0-9][0-9]; \
+	   else :; fi); \
+	done
+
+dist-info: $(INFO_DEPS)
+	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
+	list='$(INFO_DEPS)'; \
+	for base in $$list; do \
+	  case $$base in \
+	    $(srcdir)/*) base=`echo "$$base" | sed "s|^$$srcdirstrip/||"`;; \
+	  esac; \
+	  if test -f $$base; then d=.; else d=$(srcdir); fi; \
+	  for file in $$d/$$base*; do \
+	    relfile=`expr "$$file" : "$$d/\(.*\)"`; \
+	    test -f $(distdir)/$$relfile || \
+	      cp -p $$file $(distdir)/$$relfile; \
+	  done; \
+	done
+
+mostlyclean-aminfo:
+	-rm -rf gnome-speech-speechd-driver.aux gnome-speech-speechd-driver.cp \
+	  gnome-speech-speechd-driver.cps \
+	  gnome-speech-speechd-driver.fn \
+	  gnome-speech-speechd-driver.fns \
+	  gnome-speech-speechd-driver.ky \
+	  gnome-speech-speechd-driver.kys \
+	  gnome-speech-speechd-driver.log \
+	  gnome-speech-speechd-driver.pg \
+	  gnome-speech-speechd-driver.pgs \
+	  gnome-speech-speechd-driver.tmp \
+	  gnome-speech-speechd-driver.toc \
+	  gnome-speech-speechd-driver.tp \
+	  gnome-speech-speechd-driver.tps \
+	  gnome-speech-speechd-driver.vr \
+	  gnome-speech-speechd-driver.vrs \
+	  gnome-speech-speechd-driver.dvi \
+	  gnome-speech-speechd-driver.pdf \
+	  gnome-speech-speechd-driver.ps \
+	  gnome-speech-speechd-driver.html
+
+maintainer-clean-aminfo:
+	@list='$(INFO_DEPS)'; for i in $$list; do \
+	  i_i=`echo "$$i" | sed 's|\.info$$||;s|$$|.i|'`; \
+	  echo " rm -f $$i $$i-[0-9] $$i-[0-9][0-9] $$i_i[0-9] $$i_i[0-9][0-9]"; \
+	  rm -f $$i $$i-[0-9] $$i-[0-9][0-9] $$i_i[0-9] $$i_i[0-9][0-9]; \
+	done
 install-serverinfoDATA: $(serverinfo_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(serverinfodir)" || $(mkdir_p) "$(DESTDIR)$(serverinfodir)"
@@ -441,6 +563,9 @@ distdir: $(DISTFILES)
 	    || exit 1; \
 	  fi; \
 	done
+	$(MAKE) $(AM_MAKEFLAGS) \
+	  top_distdir="$(top_distdir)" distdir="$(distdir)" \
+	  dist-info
 	-find $(distdir) -type d ! -perm -777 -exec chmod a+rwx {} \; -o \
 	  ! -type d ! -perm -444 -links 1 -exec chmod a+r {} \; -o \
 	  ! -type d ! -perm -400 -exec chmod a+r {} \; -o \
@@ -540,9 +665,9 @@ distcleancheck: distclean
 	       exit 1; } >&2
 check-am: all-am
 check: check-am
-all-am: Makefile $(PROGRAMS) $(DATA) config.h
+all-am: Makefile $(INFO_DEPS) $(PROGRAMS) $(DATA) config.h
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(serverinfodir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(infodir)" "$(DESTDIR)$(serverinfodir)"; do \
 	  test -z "$$dir" || $(mkdir_p) "$$dir"; \
 	done
 install: install-am
@@ -583,20 +708,50 @@ distclean-am: clean-am distclean-compile distclean-generic \
 
 dvi: dvi-am
 
-dvi-am:
+dvi-am: $(DVIS)
 
-html: html-am
+html-am: $(HTMLS)
 
 info: info-am
 
-info-am:
+info-am: $(INFO_DEPS)
 
-install-data-am: install-serverinfoDATA
+install-data-am: install-info-am install-serverinfoDATA
 
 install-exec-am: install-binPROGRAMS
 
 install-info: install-info-am
 
+install-info-am: $(INFO_DEPS)
+	@$(NORMAL_INSTALL)
+	test -z "$(infodir)" || $(mkdir_p) "$(DESTDIR)$(infodir)"
+	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
+	list='$(INFO_DEPS)'; \
+	for file in $$list; do \
+	  case $$file in \
+	    $(srcdir)/*) file=`echo "$$file" | sed "s|^$$srcdirstrip/||"`;; \
+	  esac; \
+	  if test -f $$file; then d=.; else d=$(srcdir); fi; \
+	  file_i=`echo "$$file" | sed 's|\.info$$||;s|$$|.i|'`; \
+	  for ifile in $$d/$$file $$d/$$file-[0-9] $$d/$$file-[0-9][0-9] \
+                       $$d/$$file_i[0-9] $$d/$$file_i[0-9][0-9] ; do \
+	    if test -f $$ifile; then \
+	      relfile=`echo "$$ifile" | sed 's|^.*/||'`; \
+	      echo " $(INSTALL_DATA) '$$ifile' '$(DESTDIR)$(infodir)/$$relfile'"; \
+	      $(INSTALL_DATA) "$$ifile" "$(DESTDIR)$(infodir)/$$relfile"; \
+	    else : ; fi; \
+	  done; \
+	done
+	@$(POST_INSTALL)
+	@if (install-info --version && \
+	     install-info --version 2>&1 | sed 1q | grep -i -v debian) >/dev/null 2>&1; then \
+	  list='$(INFO_DEPS)'; \
+	  for file in $$list; do \
+	    relfile=`echo "$$file" | sed 's|^.*/||'`; \
+	    echo " install-info --info-dir='$(DESTDIR)$(infodir)' '$(DESTDIR)$(infodir)/$$relfile'";\
+	    install-info --info-dir="$(DESTDIR)$(infodir)" "$(DESTDIR)$(infodir)/$$relfile" || :;\
+	  done; \
+	else : ; fi
 install-man:
 
 installcheck-am:
@@ -606,40 +761,48 @@ maintainer-clean: maintainer-clean-am
 	-rm -rf $(top_srcdir)/autom4te.cache
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
-maintainer-clean-am: distclean-am maintainer-clean-generic
+maintainer-clean-am: distclean-am maintainer-clean-aminfo \
+	maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool
+mostlyclean-am: mostlyclean-aminfo mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool
 
 pdf: pdf-am
 
-pdf-am:
+pdf-am: $(PDFS)
 
 ps: ps-am
 
-ps-am:
+ps-am: $(PSS)
 
 uninstall-am: uninstall-binPROGRAMS uninstall-info-am \
 	uninstall-serverinfoDATA
 
 .PHONY: CTAGS GTAGS all all-am am--refresh check check-am clean \
 	clean-binPROGRAMS clean-generic clean-libtool ctags dist \
-	dist-all dist-bzip2 dist-gzip dist-shar dist-tarZ dist-zip \
-	distcheck distclean distclean-compile distclean-generic \
-	distclean-hdr distclean-libtool distclean-tags distcleancheck \
-	distdir distuninstallcheck dvi dvi-am html html-am info \
-	info-am install install-am install-binPROGRAMS install-data \
-	install-data-am install-exec install-exec-am install-info \
-	install-info-am install-man install-serverinfoDATA \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags uninstall uninstall-am \
-	uninstall-binPROGRAMS uninstall-info-am \
+	dist-all dist-bzip2 dist-gzip dist-info dist-shar dist-tarZ \
+	dist-zip distcheck distclean distclean-compile \
+	distclean-generic distclean-hdr distclean-libtool \
+	distclean-tags distcleancheck distdir distuninstallcheck dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-binPROGRAMS install-data install-data-am install-exec \
+	install-exec-am install-info install-info-am install-man \
+	install-serverinfoDATA install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-aminfo maintainer-clean-generic mostlyclean \
+	mostlyclean-aminfo mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
+	uninstall-am uninstall-binPROGRAMS uninstall-info-am \
 	uninstall-serverinfoDATA
 
+
+.texi.html:
+	$(MAKEINFO) --html -o $(HTMLDIR) $(info_TEXINFOS) $<
+
+.PHONY: html
+html: $(html_docs)
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
