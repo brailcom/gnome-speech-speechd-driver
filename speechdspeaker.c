@@ -75,6 +75,16 @@ speechd_say (PortableServer_Servant servant,
 	int ret;
     
 	GET_SPEAKER();
+	GET_DRIVER();
+
+	/* Refresh if needded */
+        if (d->last_speaker != speaker || speaker_needs_parameter_refresh (SPEAKER(speaker)))
+	    {
+		/* if (!d->last_speaker || strcmp (d->last_speaker->voice, s->voice))*/
+		spd_set_voice_type(speaker->conn, speaker->voice);
+		speaker_refresh_parameters (SPEAKER(s));
+		d->last_speaker = speaker;
+	    }
 
 	ret = spd_say(speaker->conn, SPD_MESSAGE, text);       
 	if (ret < 0) return -1;
@@ -119,12 +129,23 @@ speechd_registerSpeechCallback (PortableServer_Servant servant,
 	return FALSE; 
 }
 
+static gboolean
+festival_set_rate (Speaker *speaker,
+		   gdouble new_value)
+{
+    fprintf(stderr, "festival_set_rate\n");
+    fflush(stderr);
+    
+    return TRUE;
+}
+
 
 #define SPEECHD_SET_NUM(name) \
   static gboolean \
   speechd_set_ ## name (Speaker *speaker, \
      		         gdouble new_value) \
    { \
+        DBG("Setting parameter " #name " to value %d", (int) new_value); \
         int ret; \
 	SpeechdSpeaker *speechd_speaker = SPEECHD_SPEAKER (speaker); \
 	ret = spd_set_ ## name (speechd_speaker->conn, (int) new_value); \
@@ -206,11 +227,13 @@ speechd_speaker_new (GObject *driver,
 {
 	SpeechdSpeaker *speaker;
 	Speaker *s;
+
 	
 	speaker = g_object_new (SPEECHD_SPEAKER_TYPE, NULL);
 	s = SPEAKER (speaker);
        	s->driver = g_object_ref (driver);
 
+	DBG("Adding parameters");
 	/* Add supported parameters */
 	ADD_PARAM(rate, -100, 0, 100);
 	ADD_PARAM(pitch, -100, 0, 100);
